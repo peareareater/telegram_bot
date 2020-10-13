@@ -10,7 +10,11 @@ export enum ButtonKeys {
     support = 'support',
     donation = 'donation',
     back = 'back',
-    main_menu = 'main_menu',
+    mainMenu = 'mainMenu',
+    searchSignals = 'searchSignals',
+    bitfinex = 'bitfinex',
+    btcusd = 'btcusd',
+    b1bitfinexbtcusd = 'b1bitfinexbtcusd',
 }
 
 export const ButtonContent: { [key: string]: ButtonMapItem } = {
@@ -20,7 +24,7 @@ export const ButtonContent: { [key: string]: ButtonMapItem } = {
     support: { label: '❓ Support', key: 'support' },
     donation: { label: '💰 Donation', key: 'donation' },
     back: { label: '⬅ Back', key: 'back' },
-    main_menu: { label: '🏠 Main Menu', key: 'main_menu' },
+    mainMenu: { label: '🏠 Main Menu', key: 'mainMenu' },
 };
 
 export const Buttons = {
@@ -30,7 +34,7 @@ export const Buttons = {
     support: makeButton(ButtonContent.support),
     donation: makeButton(ButtonContent.donation),
     back: makeButton(ButtonContent.back),
-    main_menu: makeButton(ButtonContent.main_menu),
+    mainMenu: makeButton(ButtonContent.mainMenu),
 };
 
 const mainMenuButtons: ButtonRow[] = [
@@ -39,14 +43,13 @@ const mainMenuButtons: ButtonRow[] = [
     [Buttons.donation],
 ];
 
-const navigationButtons: ButtonRow[] = [[Buttons.back, Buttons.main_menu]];
+const navigationButtons: ButtonRow[] = [[Buttons.back, Buttons.mainMenu]];
 
-export const ButtonsSets: { [key: string]: ButtonRow[] } = {
-    signals: navigationButtons,
-    robots: navigationButtons,
-    settings: navigationButtons,
-    support: navigationButtons,
-    donation: mainMenuButtons,
-    back: mainMenuButtons,
-    main_menu: mainMenuButtons,
+const mainMenuGroup = [ButtonKeys.donation, ButtonKeys.back, ButtonKeys.mainMenu];
+
+export const getButtonsSets = (key: string) => {
+    if (mainMenuGroup.includes(key as ButtonKeys)) {
+        return mainMenuButtons;
+    }
+    return navigationButtons;
 };

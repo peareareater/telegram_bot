@@ -1,13 +1,12 @@
-import React, { FC, useEffect, useState } from 'react';
-import { ButtonGroup, Button, useText, Text } from '@urban-bot/core';
-import { ButtonRow } from '../constants/types';
-import { ButtonContent, ButtonKeys, ButtonsSets } from './NavButtons';
+import React, { FC } from 'react';
 import { MessageManagerProps } from '../containers/MessageManager';
+import { ResponseMessage } from './ResponseButtons';
 
-export const MessageManagerComponent: FC<MessageManagerProps> = ({ navigationState }) => {
-    return (
+export const MessageManagerComponent: FC<MessageManagerProps> = ({ navigationState, setNavigationState }) => {
+    const Component = ResponseMessage[navigationState];
+    return Component ? (
         <>
-            <Text>{navigationState}</Text>
+            <Component type={navigationState} setNavigationState={setNavigationState} />
         </>
-    );
+    ) : null;
 };
