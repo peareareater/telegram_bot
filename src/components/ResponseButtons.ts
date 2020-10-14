@@ -3,6 +3,8 @@ import { SignalsResponse } from './SignalsResponse';
 import { SettingsResponse } from './SettingsResponse';
 import { ReactType } from 'react';
 import { SupportResponse } from './SupportResponse';
+import { ExchangeKeysResponse } from './ExchangeKeysResponse';
+import { SubscribeToSignalDialog } from './SubscribeToSignalDialog';
 
 export const ResponseMessage: { [key: string]: ReactType } = {
     [ButtonKeys.signals]: SignalsResponse,
@@ -13,4 +15,6 @@ export const ResponseMessage: { [key: string]: ReactType } = {
     [ButtonKeys.bitfinex]: SignalsResponse,
     [ButtonKeys.btcusd]: SignalsResponse,
     [ButtonKeys.b1bitfinexbtcusd]: SignalsResponse,
+    [ButtonKeys.exchangeAPIKeys]: ExchangeKeysResponse,
+    [ButtonKeys.subscribeToSignals]: SubscribeToSignalDialog,
 };

@@ -1,31 +1,33 @@
 import React, { FC } from 'react';
-import { Button, ButtonGroup, Text } from '@urban-bot/core';
-import { ButtonKeys } from './NavButtons';
+import { Button, ButtonGroup } from '@urban-bot/core';
+import { ButtonContent, ButtonMapItem } from './NavButtons';
+import { SignalsResponseProps } from './SignalsResponse';
 
-interface SignalsResponseProps {
-    type: ButtonKeys;
-}
-
-const messageButtonsConfig = [
-    `🔐 My exchange API Keys`,
-    `🚦 Turn Telegram signals notifications OFF 🔕`,
-    `🤖 Turn Telegram trading notifications OFF 🔕`,
-    '⬅ Back',
+export const messageButtonsConfig = [
+    [{ label: `🔐 My exchange API Keys`, key: 'exchangeAPIKeys' }],
+    [{ label: `🚦 Turn Telegram signals notifications OFF 🔕`, key: 'turnOff' }],
+    [{ label: '🤖 Turn Telegram trading notifications OFF ', key: 'turnOff' }],
+    [ButtonContent.back],
 ];
 
-export const SettingsResponse: FC<SignalsResponseProps> = () => {
+const title = `👤 Account info
+
+📨 Email: Not set
+
+🚦 Telegram signals notifications is ON 🔔
+🤖 Telegram trading notifications is ON 🔔`;
+
+export const SettingsResponse: FC<SignalsResponseProps> = ({ setNavigationState }) => {
     return (
         <>
-            <Text>{'👤 Account Info'}</Text>
-            <Text>{'\n'}</Text>
-            <Text>{'✉ Email: not set'}</Text>
-            <Text>{'\n'}</Text>
-            <Text>{'🚦 Telegram signals notifications is ON 🔔'}</Text>
-            <Text>{'🤖 Telegram trading notifications is ON 🔔'}</Text>
-            <ButtonGroup isNewMessageEveryRender={false}>
-                {messageButtonsConfig.map((buttonText, i) => (
-                    <Button key={`response-button-${i}`}>{buttonText}</Button>
-                ))}
+            <ButtonGroup isNewMessageEveryRender={false} title={title}>
+                {messageButtonsConfig.map((buttons: ButtonMapItem[], i) =>
+                    buttons.map((button) => (
+                        <Button onClick={() => setNavigationState(button.key)} key={`response-button-${i}`}>
+                            {button.label}
+                        </Button>
+                    )),
+                )}
             </ButtonGroup>
         </>
     );

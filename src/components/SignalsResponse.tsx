@@ -4,7 +4,7 @@ import { ButtonContent, ButtonKeys, ButtonMapItem } from './NavButtons';
 import { capitalize, isSignalOrRobot } from '../helpers';
 import { buttonsMap, generateButtons, MESSAGE_TAIL, messageProp, titleMap } from './SignalsButtons';
 
-interface SignalsResponseProps {
+export interface SignalsResponseProps {
     type: ButtonKeys;
     setNavigationState: (state: string) => void;
 }

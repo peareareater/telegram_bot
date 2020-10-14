@@ -15,6 +15,8 @@ export enum ButtonKeys {
     bitfinex = 'bitfinex',
     btcusd = 'btcusd',
     b1bitfinexbtcusd = 'b1bitfinexbtcusd',
+    exchangeAPIKeys = 'exchangeAPIKeys',
+    subscribeToSignals = 'subscribeToSignals',
 }
 
 export const ButtonContent: { [key: string]: ButtonMapItem } = {
